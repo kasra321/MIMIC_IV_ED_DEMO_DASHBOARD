@@ -6,7 +6,8 @@ import type {
   EncounterFilters,
 } from '../types';
 
-const API_BASE_URL = 'http://localhost:8000/api';
+// Use relative URL in production (Docker), absolute URL in development
+const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

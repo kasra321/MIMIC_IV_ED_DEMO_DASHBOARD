@@ -47,11 +47,48 @@ mimic-iv-ed-dashboard/
 
 ## Prerequisites
 
-- Python 3.9+
-- Node.js 18+
+- Docker & Docker Compose (recommended)
+- OR: Python 3.9+ and Node.js 18+
 - MIMIC IV ED Demo dataset
 
-## Setup
+## Quick Start with Docker
+
+The easiest way to run the dashboard is with Docker:
+
+```bash
+# Clone the repository
+git clone https://github.com/kasra321/MIMIC_IV_ED_DEMO_DASHBOARD.git
+cd MIMIC_IV_ED_DEMO_DASHBOARD
+
+# Create data directory and copy your MIMIC IV ED files
+mkdir -p data
+cp /path/to/mimic-iv-ed-demo-2.2/ed/*.csv.gz data/
+
+# Build and run with Docker Compose
+docker-compose up --build
+```
+
+The dashboard will be available at **http://localhost:3000**
+
+### Docker Configuration
+
+The docker-compose setup includes:
+- **Frontend**: Nginx serving the React app on port 3000
+- **Backend**: FastAPI server (internal, proxied through nginx)
+- **Database**: SQLite (persisted in a Docker volume)
+
+To stop the containers:
+```bash
+docker-compose down
+```
+
+To reset the database:
+```bash
+docker-compose down -v  # Removes volumes
+docker-compose up --build
+```
+
+## Manual Setup (Development)
 
 ### 1. Clone the repository
 

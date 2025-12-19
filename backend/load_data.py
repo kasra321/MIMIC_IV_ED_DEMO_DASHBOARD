@@ -17,8 +17,8 @@ from app.database import engine, Base
 from app.models import EdStay, Triage, VitalSign, Diagnosis, MedRecon, Pyxis
 from sqlalchemy.orm import Session
 
-# Path to MIMIC IV ED data files
-DATA_PATH = Path("/Users/kasra/Documents/Mimic Demo/mimic-iv-ed-demo-2.2/ed")
+# Path to MIMIC IV ED data files - use environment variable or default
+DATA_PATH = Path(os.environ.get("DATA_PATH", "/Users/kasra/Documents/Mimic Demo/mimic-iv-ed-demo-2.2/ed"))
 
 
 def parse_datetime(value: str) -> Optional[datetime]:
